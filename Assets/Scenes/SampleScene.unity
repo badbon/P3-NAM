@@ -554,6 +554,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1059587495}
   - component: {fileID: 1059587494}
+  - component: {fileID: 1059587497}
   - component: {fileID: 1059587493}
   - component: {fileID: 1059587496}
   m_Layer: 0
@@ -618,7 +619,7 @@ MonoBehaviour:
   waterTile: {fileID: 11400000, guid: 278c72914123c3545904a878f2fbdb50, type: 2}
   treePrefab: {fileID: 8849046746299264615, guid: c5507f29c059d8b429957c7a1ef41b75, type: 3}
   mapSize: {x: 100, y: 100, z: 1}
-  noiseScale: 0.1
+  treeSpawnChance: 0.01
 --- !u!4 &1059587495
 Transform:
   m_ObjectHideFlags: 0
@@ -672,8 +673,8 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 439339967
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -683,6 +684,18 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
+--- !u!156049354 &1059587497
+Grid:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1059587492}
+  m_Enabled: 1
+  m_CellSize: {x: 1, y: 1, z: 1}
+  m_CellGap: {x: 0, y: 0, z: 0}
+  m_CellLayout: 0
+  m_CellSwizzle: 0
 --- !u!1 &1792102062
 GameObject:
   m_ObjectHideFlags: 0
