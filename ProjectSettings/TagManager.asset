@@ -38,6 +38,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: World
+    uniqueID: 439339967
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Character
+    uniqueID: 4228225591
+    locked: 0
+  - name: Weapon
+    uniqueID: 2675990987
     locked: 0
