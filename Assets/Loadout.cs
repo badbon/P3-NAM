@@ -7,13 +7,14 @@ public class Loadout : MonoBehaviour
     // controls the actual weapons, equipment, and armament that the player (or, NPC) has
     public Weapon equipedWeapon;
     public List<Weapon> weapons; // List of weapons that the player has
+    public int currentMagazineBullets; // Number of bullets in the magazine
 
     public GameObject bulletPrefab; // Prefab of the generic bullet that is fired from the weapon
 
     void Start()
     {
         // Dummy test weapon
-        equipedWeapon = new Weapon("M16", true, 10.0f, 100.0f, 0, 0.1f, 30, 1.0f, 1.0f);
+        equipedWeapon = new Weapon("M16", true, 10.0f, 10.0f, 0, 0.1f, 30, 1.0f, 1.0f);
         weapons = new List<Weapon>();
         weapons.Add(equipedWeapon);
         
@@ -40,6 +41,7 @@ public class Loadout : MonoBehaviour
             {
                 // No ammo. Reload
                 Debug.Log("No ammo!");
+                StartCoroutine(Reload());
             }
         }
     }
@@ -48,7 +50,7 @@ public class Loadout : MonoBehaviour
     {
         // Reloads the weapon
         yield return new WaitForSeconds(equipedWeapon.reloadTime);
-        equipedWeapon.magazineSize = equipedWeapon.magazineSize;
+        currentMagazineBullets = equipedWeapon.magazineSize;
     }
 }
 

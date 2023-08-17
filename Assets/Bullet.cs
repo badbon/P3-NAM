@@ -13,13 +13,18 @@ public class Bullet : MonoBehaviour
 
     void Start()
     {
-        rb.velocity = transform.right * speed;
+        if(rb == null)
+        {
+            rb = GetComponent<Rigidbody2D>();
+        }
         
+        rb.velocity = transform.right * speed;
+        StartCoroutine(DestroyBullet());
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator DestroyBullet()
     {
-        
+        yield return new WaitForSeconds(range);
+        Destroy(gameObject);
     }
 }
