@@ -30,7 +30,8 @@ public class Loadout : MonoBehaviour
             {
                 // Has ammo
                 equipedWeapon.magazineSize -= 1;
-                GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
+                //Spawn bullet. With some firing offset for bullet travel
+                GameObject bullet = Instantiate(bulletPrefab, transform.position + Vector3.right / 2, transform.rotation);
                 Bullet bulletScript = bullet.GetComponent<Bullet>();
                 bulletScript.damage = equipedWeapon.damage;
                 bulletScript.range = equipedWeapon.range;

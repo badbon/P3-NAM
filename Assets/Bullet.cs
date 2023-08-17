@@ -11,13 +11,14 @@ public class Bullet : MonoBehaviour
     public float range;
     public float accuracyModifier;
 
+
     void Start()
     {
         if(rb == null)
         {
             rb = GetComponent<Rigidbody2D>();
         }
-        
+
         rb.velocity = transform.right * speed;
         StartCoroutine(DestroyBullet());
     }
