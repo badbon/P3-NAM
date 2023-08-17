@@ -612,10 +612,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8976ade3cf589a845bea42a3eba6eb37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilemap: {fileID: 0}
-  grassTile: {fileID: 0}
-  waterTile: {fileID: 0}
-  treeTile: {fileID: 0}
+  tilemap: {fileID: 1059587493}
+  grassTile: {fileID: 11400000, guid: d8350eaa7b921a64092930f019ac7c9f, type: 2}
+  waterTile: {fileID: 11400000, guid: 278c72914123c3545904a878f2fbdb50, type: 2}
+  treePrefab: {fileID: 8849046746299264615, guid: c5507f29c059d8b429957c7a1ef41b75, type: 3}
   mapSize: {x: 100, y: 100, z: 1}
   noiseScale: 0.1
 --- !u!4 &1059587495

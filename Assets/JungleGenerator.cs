@@ -8,7 +8,7 @@ public class JungleGenerator : MonoBehaviour
     public Tilemap tilemap;
     public Tile grassTile;
     public Tile waterTile;
-    public Tile treeTile;
+    public GameObject treePrefab;  // Use a GameObject prefab instead of a Tile for trees
     //... Add more tiles as needed
 
     public Vector3Int mapSize = new Vector3Int(100, 100, 1);
@@ -35,14 +35,16 @@ public class JungleGenerator : MonoBehaviour
                 }
                 else if (noiseValue < 0.5f)
                 {
-                    tilemap.SetTile(position, treeTile);
+                    // Instead of setting a tile, we'll instantiate a GameObject here
+                    Vector3 worldPos = tilemap.CellToWorld(position);
+                    Instantiate(treePrefab, worldPos, Quaternion.identity, this.transform);
                 }
                 else
                 {
                     tilemap.SetTile(position, grassTile);
                 }
 
-                // Continue to add more conditions for different tiles as needed
+                // Continue to add more conditions for different tiles or game objects as needed
             }
         }
     }
