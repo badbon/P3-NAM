@@ -25,27 +25,24 @@ public class JungleGenerator : MonoBehaviour
         {
             for (int y = 0; y < mapSize.y; y++)
             {
-                Vector3Int position = new Vector3Int(x, y, 0);
+                Vector3Int cellPosition = new Vector3Int(x, y, 0);
                 float noiseValue = Mathf.PerlinNoise(x * noiseScale, y * noiseScale);
 
-                // Now, you decide how to interpret this noise value
                 if (noiseValue < 0.3f)
                 {
-                    tilemap.SetTile(position, waterTile);
+                    tilemap.SetTile(cellPosition, waterTile);
                 }
                 else if (noiseValue < 0.5f)
                 {
-                    // Instead of setting a tile, we'll instantiate a GameObject here
-                    Vector3 worldPos = tilemap.CellToWorld(position);
-                    Instantiate(treePrefab, worldPos, Quaternion.identity, this.transform);
+                    tilemap.SetTile(cellPosition, grassTile);
+                    Instantiate(treePrefab, new Vector3(x, y, 0), Quaternion.identity, this.transform);
                 }
                 else
                 {
-                    tilemap.SetTile(position, grassTile);
+                    tilemap.SetTile(cellPosition, grassTile);
                 }
-
-                // Continue to add more conditions for different tiles or game objects as needed
             }
         }
     }
+
 }
