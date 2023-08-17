@@ -8,15 +8,47 @@ public class Loadout : MonoBehaviour
     public Weapon equipedWeapon;
     public List<Weapon> weapons; // List of weapons that the player has
 
+    public GameObject bulletPrefab; // Prefab of the generic bullet that is fired from the weapon
+
     void Start()
     {
+        // Dummy test weapon
+        equipedWeapon = new Weapon("M16", true, 10.0f, 100.0f, 0, 0.1f, 30, 1.0f, 1.0f);
+        weapons = new List<Weapon>();
+        weapons.Add(equipedWeapon);
         
     }
 
-
-    void Update()
+    public void Fire()
     {
-        
+        // Fires the weapon
+        if (equipedWeapon.isFirearm)
+        {
+            // Firearm
+            if(equipedWeapon.magazineSize > 0)
+            {
+                // Has ammo
+                equipedWeapon.magazineSize -= 1;
+                GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
+                Bullet bulletScript = bullet.GetComponent<Bullet>();
+                bulletScript.damage = equipedWeapon.damage;
+                bulletScript.range = equipedWeapon.range;
+                bulletScript.accuracyModifier = equipedWeapon.accuracyModifier;
+
+            }
+            else
+            {
+                // No ammo. Reload
+                Debug.Log("No ammo!");
+            }
+        }
+    }
+
+    public IEnumerator Reload()
+    {
+        // Reloads the weapon
+        yield return new WaitForSeconds(equipedWeapon.reloadTime);
+        equipedWeapon.magazineSize = equipedWeapon.magazineSize;
     }
 }
 
