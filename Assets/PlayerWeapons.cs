@@ -15,9 +15,11 @@ public class PlayerWeapons : MonoBehaviour
     void Update()
     {
         //Fire
+        // Fire
         if (Input.GetButton("Fire1"))
         {
-            loadout.Fire();
+            float aimAngle = GetAimAngle();
+            loadout.Fire(aimAngle);
         }
 
         //Reload
@@ -26,5 +28,17 @@ public class PlayerWeapons : MonoBehaviour
             loadout.StartCoroutine(loadout.Reload());
         }
     }
+
+    private float GetAimAngle()
+    {
+        Vector3 mouseScreenPosition = Input.mousePosition;
+        Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(new Vector3(mouseScreenPosition.x, mouseScreenPosition.y, Camera.main.transform.position.z - transform.position.z));
+
+        Vector3 directionToMouse = mouseWorldPosition - transform.position;
+        float angle = Mathf.Atan2(directionToMouse.y, directionToMouse.x) * Mathf.Rad2Deg;
+
+        return angle;
+    }
+
 
 }

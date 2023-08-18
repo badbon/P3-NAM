@@ -979,7 +979,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc6ee2be222688f46b15267dbbe00689, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentMagazineBullets: 0
+  currentMagazineBullets: 30
   bulletPrefab: {fileID: 1319630206304686669, guid: dd1277ddbed38bc43ada103846986cd2, type: 3}
 --- !u!114 &1792102068
 MonoBehaviour:
@@ -1005,6 +1005,7 @@ GameObject:
   - component: {fileID: 2004068360}
   - component: {fileID: 2004068362}
   - component: {fileID: 2004068361}
+  - component: {fileID: 2004068363}
   m_Layer: 5
   m_Name: Crosshair
   m_TagString: Untagged
@@ -1069,6 +1070,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2004068359}
   m_CullTransparentMesh: 1
+--- !u!114 &2004068363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004068359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 287c6b3f98e89f641afe10540d905fd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2051865108
 GameObject:
   m_ObjectHideFlags: 0
