@@ -17,7 +17,6 @@ public class Loadout : MonoBehaviour
         equipedWeapon = new Weapon("M16", true, 10.0f, 10.0f, 0, 0.1f, 30, 1.0f, 1.0f);
         weapons = new List<Weapon>();
         weapons.Add(equipedWeapon);
-        
     }
 
     public void Fire()
@@ -26,10 +25,10 @@ public class Loadout : MonoBehaviour
         if (equipedWeapon.isFirearm)
         {
             // Firearm
-            if(equipedWeapon.magazineSize > 0)
+            if(currentMagazineBullets > 0)
             {
                 // Has ammo
-                equipedWeapon.magazineSize -= 1;
+                currentMagazineBullets -= 1;
                 //Spawn bullet. With some firing offset for bullet travel
                 GameObject bullet = Instantiate(bulletPrefab, transform.position + Vector3.right / 2, transform.rotation);
                 Bullet bulletScript = bullet.GetComponent<Bullet>();
@@ -50,6 +49,7 @@ public class Loadout : MonoBehaviour
     public IEnumerator Reload()
     {
         // Reloads the weapon
+        Debug.Log("Reloading... " + equipedWeapon.reloadTime);
         yield return new WaitForSeconds(equipedWeapon.reloadTime);
         currentMagazineBullets = equipedWeapon.magazineSize;
     }

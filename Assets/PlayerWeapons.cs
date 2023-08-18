@@ -14,9 +14,17 @@ public class PlayerWeapons : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        //Fire
+        if (Input.GetButton("Fire1"))
         {
             loadout.Fire();
+        }
+
+        //Reload
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            loadout.StartCoroutine(loadout.Reload());
+
         }
     }
 
