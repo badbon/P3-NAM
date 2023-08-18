@@ -19,23 +19,31 @@ public class Loadout : MonoBehaviour
         weapons.Add(equipedWeapon);
     }
 
-    public void Fire()
+    public void Fire(float angleInDegrees)
     {
         // Fires the weapon
         if (equipedWeapon.isFirearm)
         {
             // Firearm
-            if(currentMagazineBullets > 0)
+            if (currentMagazineBullets > 0)
             {
                 // Has ammo
                 currentMagazineBullets -= 1;
-                //Spawn bullet. With some firing offset for bullet travel
-                GameObject bullet = Instantiate(bulletPrefab, transform.position + Vector3.right / 2, transform.rotation);
+
+                // Calculate the rotation based on the provided angle
+                Quaternion bulletRotation = Quaternion.Euler(0, 0, angleInDegrees);
+
+                // Calculate the offset for the bullet's initial position
+                // Here we use the bullet's direction (calculated from the angle) and a fixed distance to determine the offset
+                Vector3 bulletDirection = bulletRotation * Vector3.right; // Assumes firing to the right is the default.
+                Vector3 bulletSpawnPosition = transform.position + bulletDirection * 0.5f; // Adjust the multiplier as needed for your offset.
+
+                //Spawn bullet with the adjusted rotation and position
+                GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPosition, bulletRotation);
                 Bullet bulletScript = bullet.GetComponent<Bullet>();
                 bulletScript.damage = equipedWeapon.damage;
                 bulletScript.range = equipedWeapon.range;
                 bulletScript.accuracyModifier = equipedWeapon.accuracyModifier;
-
             }
             else
             {

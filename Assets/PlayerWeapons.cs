@@ -24,7 +24,6 @@ public class PlayerWeapons : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             loadout.StartCoroutine(loadout.Reload());
-
         }
     }
 
