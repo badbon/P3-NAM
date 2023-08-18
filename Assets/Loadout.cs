@@ -8,24 +8,29 @@ public class Loadout : MonoBehaviour
     public Weapon equipedWeapon;
     public List<Weapon> weapons; // List of weapons that the player has
     public int currentMagazineBullets; // Number of bullets in the magazine
-
+    private float lastFiredTime = 0; // Time at which the weapon was last fired.
     public GameObject bulletPrefab; // Prefab of the generic bullet that is fired from the weapon
 
     void Start()
     {
         // Dummy test weapon
-        equipedWeapon = new Weapon("M16", true, 10.0f, 10.0f, 0, 0.1f, 30, 1.0f, 1.0f);
+        equipedWeapon = new Weapon("M16", true, 10.0f, 10.0f, 0, 700f, 30, 1.0f, 1.0f);
         weapons = new List<Weapon>();
         weapons.Add(equipedWeapon);
     }
 
     public void Fire(float angleInDegrees)
     {
-        // Fires the weapon
-        if (equipedWeapon.isFirearm)
-        {
-            // Firearm
-            if (currentMagazineBullets > 0)
+        float timeBetweenShots = 60.0f / equipedWeapon.fireRate; // Convert RPM to time between shots
+        float currentTime = Time.time; // Get the current game time
+
+        // Check if enough time has passed since the last shot
+        if (currentTime - lastFiredTime < timeBetweenShots)
+            return; // Too soon to fire again, exit the method
+
+        lastFiredTime = currentTime; // Update the last fired time to now
+        
+        if (currentMagazineBullets > 0)
             {
                 // Has ammo
                 currentMagazineBullets -= 1;
@@ -51,9 +56,8 @@ public class Loadout : MonoBehaviour
                 Debug.Log("No ammo!");
                 StartCoroutine(Reload());
             }
-        }
     }
-
+    
     public IEnumerator Reload()
     {
         // Reloads the weapon
@@ -63,6 +67,7 @@ public class Loadout : MonoBehaviour
     }
 }
 
+[System.Serializable]
 public class Weapon 
 {
     // Weapon class (firearm, knife, etc. stores all data about the weapon)

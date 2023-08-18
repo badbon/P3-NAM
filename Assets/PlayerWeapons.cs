@@ -14,7 +14,6 @@ public class PlayerWeapons : MonoBehaviour
 
     void Update()
     {
-        //Fire
         // Fire
         if (Input.GetButton("Fire1"))
         {
