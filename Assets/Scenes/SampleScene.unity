@@ -1271,6 +1271,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   health: 100
+  spawnPoint: {x: 0, y: 0, z: 0}
+  spriteRenderers:
+  - {fileID: 635946191}
+  - {fileID: 464655554}
+  - {fileID: 2051865110}
 --- !u!61 &1792102066
 BoxCollider2D:
   m_ObjectHideFlags: 0

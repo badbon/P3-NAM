@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour
     public float health = 100f; // 100/100
     private float maxHealth = 100f; // Start health
 
+    public Vector3 spawnPoint; // For respawns, etc
+    public SpriteRenderer[] spriteRenderers; // All visible player parts
+
     void Start()
     {
         
@@ -50,5 +53,25 @@ public class PlayerController : MonoBehaviour
     private void Die()
     {
         Debug.Log("Player died");
+        // Respawn
+        StartCoroutine(FlashPlayerVisibility());
+        transform.position = spawnPoint;
+        health = maxHealth;
+    }
+
+    public IEnumerator FlashPlayerVisibility()
+    {
+        // For respawn fx
+        foreach(SpriteRenderer sr in spriteRenderers)
+        {
+            sr.enabled = false;
+        }
+
+        yield return new WaitForSeconds(1f);
+
+        foreach (SpriteRenderer sr in spriteRenderers)
+        {
+            sr.enabled = true;
+        }
     }
 }
