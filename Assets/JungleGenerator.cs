@@ -31,6 +31,10 @@ public class JungleGenerator : MonoBehaviour
         FillWithGrass();
         PlaceTerrainTiles();  // Replaced PlaceWaterTiles with PlaceTerrainTiles
         PlaceTrees();
+
+        // To make sure trees don't generate root-first if theyre too close on top of each other
+        SortChildrenByY(transform);
+
     }
 
     private void FillWithGrass()
@@ -102,4 +106,25 @@ public class JungleGenerator : MonoBehaviour
             }
         }
     }
+
+    public void SortChildrenByY(Transform parentTransform)
+    {
+        List<Transform> children = new List<Transform>();
+
+        // Populate the list with each child
+        foreach (Transform child in parentTransform)
+        {
+            children.Add(child);
+        }
+
+        // Sort the list based on Y-coordinate
+        children.Sort((a, b) => b.position.y.CompareTo(a.position.y));
+
+        // Re-attach the children in the new order
+        foreach (Transform child in children)
+        {
+            child.SetAsLastSibling();
+        }
+    }
+
 }

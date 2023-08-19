@@ -908,7 +908,7 @@ MonoBehaviour:
   - {fileID: 2418836673558877761, guid: 66f486b0255b1174db42bda4d6a71d4e, type: 3}
   - {fileID: 2418836673558877761, guid: 8703700076b139249bca7afb7bc48e98, type: 3}
   mapSize: {x: 100, y: 100, z: 1}
-  treeSpawnChance: 0.01
+  treeSpawnChance: 0.015
   waterFrequency: 0.2
   dirtFrequency: 0.2
   seed: 0
