@@ -29,11 +29,17 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void OnColisionEnter2D(Collision2D collision)
+    public void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log("Bullet hit " + collision.gameObject.name);
         if(collision.gameObject.tag == "Enemy")
         {
             collision.gameObject.GetComponent<NPCController>().TakeDamage(damage);
         }
+        if(collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.GetComponent<PlayerController>().TakeDamage(damage);
+        }
+        Destroy(gameObject);
     }
 }

@@ -23,6 +23,7 @@ public class NPCController : MonoBehaviour
 
     internal void TakeDamage(float damage)
     {
+        Debug.Log("NPC took " + damage + " damage");
         health -= damage;
         if(health <= 0)
         {
@@ -32,6 +33,7 @@ public class NPCController : MonoBehaviour
 
     private void Die()
     {
-        throw new NotImplementedException();
+        Debug.Log("NPC died");
+        
     }
 }

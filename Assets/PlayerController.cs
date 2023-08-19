@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,5 +33,22 @@ public class PlayerController : MonoBehaviour
     {
         // Move the player
         transform.Translate(direction * speed * Time.deltaTime);
+    }
+
+    internal void TakeDamage(float damage)
+    {
+        // Take damage
+        health -= damage;
+
+        // Check if dead
+        if(health <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        Debug.Log("Player died");
     }
 }
