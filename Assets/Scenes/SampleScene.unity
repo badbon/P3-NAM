@@ -898,6 +898,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilemap: {fileID: 1059587493}
   grassTile: {fileID: 11400000, guid: d8350eaa7b921a64092930f019ac7c9f, type: 2}
+  dirtTile: {fileID: 11400000, guid: ecc4b5fee486c0b4d9c2358667816e8a, type: 2}
   waterTile: {fileID: 11400000, guid: 278c72914123c3545904a878f2fbdb50, type: 2}
   treePrefabs:
   - {fileID: 7694296455604255009, guid: a7fae367c4781a941b32ccf7a06eddb3, type: 3}
@@ -909,6 +910,9 @@ MonoBehaviour:
   mapSize: {x: 100, y: 100, z: 1}
   treeSpawnChance: 0.01
   waterFrequency: 0.2
+  dirtFrequency: 0.2
+  seed: 0
+  useRandomSeed: 1
 --- !u!4 &1059587495
 Transform:
   m_ObjectHideFlags: 0
