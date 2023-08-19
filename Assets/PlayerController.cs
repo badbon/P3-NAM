@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour
 {
     // 2D top-down movement
     public float speed = 10.0f;
+    public float health = 100f; // 100/100
+    private float maxHealth = 100f; // Start health
 
     void Start()
     {

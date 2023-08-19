@@ -28,4 +28,12 @@ public class Bullet : MonoBehaviour
         yield return new WaitForSeconds(range);
         Destroy(gameObject);
     }
+
+    public void OnColisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Enemy")
+        {
+            collision.gameObject.GetComponent<NPCController>().TakeDamage(damage);
+        }
+    }
 }
