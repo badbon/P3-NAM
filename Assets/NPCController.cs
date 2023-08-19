@@ -34,6 +34,7 @@ public class NPCController : MonoBehaviour
     private void Die()
     {
         Debug.Log("NPC died");
-        
+        Destroy(gameObject);
+
     }
 }
