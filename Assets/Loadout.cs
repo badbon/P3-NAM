@@ -38,13 +38,17 @@ public class Loadout : MonoBehaviour
                 // Calculate the rotation based on the provided angle
                 Quaternion bulletRotation = Quaternion.Euler(0, 0, angleInDegrees);
 
-                // Calculate the offset for the bullet's initial position
-                // Here we use the bullet's direction (calculated from the angle) and a fixed distance to determine the offset
+                // Calculate the bullet's direction
                 Vector3 bulletDirection = bulletRotation * Vector3.right; // Assumes firing to the right is the default.
-                Vector3 bulletSpawnPosition = transform.position + bulletDirection * 0.5f; // Adjust the multiplier as needed for your offset.
+
+                // Calculate the offset for the bullet's initial position
+                float playerRadius = GetComponent<Collider2D>().bounds.extents.magnitude; // Assumes a Collider2D on the player
+                float bulletOffset = playerRadius + 0.25f; // Added a 0.1f padding to ensure it's outside the player
+                Vector3 bulletSpawnPosition = transform.position + bulletDirection * bulletOffset;
 
                 //Spawn bullet with the adjusted rotation and position
                 GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPosition, bulletRotation);
+                
                 Bullet bulletScript = bullet.GetComponent<Bullet>();
                 bulletScript.damage = equipedWeapon.damage;
                 bulletScript.range = equipedWeapon.range;
