@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8388658789015558251}
   m_Layer: 0
   m_Name: Small Bush
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

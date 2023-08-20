@@ -907,8 +907,8 @@ MonoBehaviour:
   - {fileID: 3847898598712677961, guid: 35e2d6ca9cddb444c830330462acf029, type: 3}
   - {fileID: 2418836673558877761, guid: 66f486b0255b1174db42bda4d6a71d4e, type: 3}
   - {fileID: 2418836673558877761, guid: 8703700076b139249bca7afb7bc48e98, type: 3}
-  mapSize: {x: 100, y: 100, z: 1}
-  treeSpawnChance: 0.015
+  mapSize: {x: 250, y: 250, z: 1}
+  treeSpawnChance: 0.02
   waterFrequency: 0.2
   dirtFrequency: 0.2
   seed: 0
@@ -1087,7 +1087,7 @@ Transform:
   m_GameObject: {fileID: 1477691783}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8, y: 5, z: 0}
+  m_LocalPosition: {x: 150, y: 100, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1254,7 +1254,7 @@ Transform:
   m_GameObject: {fileID: 1792102062}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15, y: 5, z: 0}
+  m_LocalPosition: {x: 150, y: 100, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
