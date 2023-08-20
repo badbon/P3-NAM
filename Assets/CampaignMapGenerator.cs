@@ -16,6 +16,21 @@ public class CampaignMapGenerator : MonoBehaviour
     public int seed = 0;
     public bool useRandomSeed = true;
 
+    // Campaign
+    public int totatEnemyUnits = 10;
+    public int totalPlayerUnits = 10;
+    public List<Unit> enemyUnits;
+    public List<Unit> playerUnits;
+
+    // Conditions of campaign. Support points gives US faction air/arty support. Mine rate gives VC faction more trapsetting, etc.
+    public int supportPoints; 
+    public int mineRate;
+
+    public int turn = 0; // Turn counter
+    public bool playerTurn = true; // If true, player turn. If false, enemy turn.
+
+
+
     private void Start()
     {
         if (useRandomSeed)
@@ -31,6 +46,22 @@ public class CampaignMapGenerator : MonoBehaviour
 
         // To make sure trees don't generate root-first if theyre too close on top of each other
         SortChildrenByY(transform);
+    }
+
+    public void GenerateRandomUnits()
+    {
+        for (int i = 0; i < totatEnemyUnits; i++)
+        {
+            string unitName = "Enemy Unit " + i;
+            int unitCondition = Random.Range(10, 31);  // Generates a number between 10 and 30 inclusive.
+            int unitMorale = Random.Range(80, 101);    // Generates a number between 80 and 100 inclusive.
+            int unitAttack = Random.Range(5, 16);      // Generates a number between 5 and 15 inclusive.
+            bool unitStealth = (Random.value > 0.5f);  // Randomly sets true or false.
+            bool unitEntrenched = (Random.value > 0.5f);
+
+            Unit newUnit = new Unit(unitName, unitCondition, unitMorale, unitAttack, unitStealth, unitEntrenched);
+            enemyUnits.Add(newUnit);
+        }
     }
 
     private void FillWithGrass()
@@ -100,4 +131,24 @@ public class CampaignMapGenerator : MonoBehaviour
         }
     }
 
+}
+
+public class Unit
+{
+    public string name;
+    public int condition; // HP, basically.
+    public int morale;
+    public int attack; // Raw attack power
+    public bool stealth; // If undetected by enemy side, stealth = true
+    public bool entrenched; // Immobile, but gets mine and support bonus. Good for ambush or general defense.
+
+    public Unit(string name, int condition = 20, int morale = 100, int attack = 10, bool stealth = true, bool entrenched = false)
+    {
+        this.name = name;
+        this.condition = condition;
+        this.morale = morale;
+        this.attack = attack;
+        this.stealth = stealth;
+        this.entrenched = entrenched;
+    }
 }
