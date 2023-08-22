@@ -121,7 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 7291419111219847874}
   damage: 5
-  speed: 30
+  speed: 20
   range: 5
   accuracyModifier: 0
 --- !u!1 &5473688824047431694
