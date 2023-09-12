@@ -8,7 +8,7 @@ public class SceneSwitch : MonoBehaviour
     public bool isGameMap = true; // combat/game scene
     void Start()
     {
-        
+        DontDestroyOnLoad(this.gameObject);
     }
 
     // Update is called once per frame
@@ -19,11 +19,13 @@ public class SceneSwitch : MonoBehaviour
         {
             if (isGameMap)
             {
-                SceneManager.LoadScene("CombatScene");
+                isGameMap = false;
+                SceneManager.LoadScene("CampaignScene");
             }
             else
             {
-                SceneManager.LoadScene("CampaignScene");
+                isGameMap = true;
+                SceneManager.LoadScene("CombatScene");
             }
         }
     }
