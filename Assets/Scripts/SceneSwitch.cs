@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class SceneSwitch : MonoBehaviour
 {
     public bool isGameMap = true; // combat/game scene
+    public CampaignMapGenerator campaignMapGenerator;
+    public CampaignPlayerMovement campaignPlayerMovement;
     void Start()
     {
         DontDestroyOnLoad(this.gameObject);
@@ -27,6 +29,16 @@ public class SceneSwitch : MonoBehaviour
                 isGameMap = true;
                 SceneManager.LoadScene("CombatScene");
             }
+        }
+    }
+
+    public void GetGameTile()
+    {
+        campaignMapGenerator = FindObjectOfType<CampaignMapGenerator>();
+        campaignPlayerMovement = FindObjectOfType<CampaignPlayerMovement>();
+        if(campaignMapGenerator != null && campaignPlayerMovement != null)
+        {
+            campaignMapGenerator.GetTileProperties((int)campaignPlayerMovement.transform.position.x, (int)campaignPlayerMovement.transform.position.y);
         }
     }
 }
