@@ -26,19 +26,23 @@ public class SceneSwitch : MonoBehaviour
             }
             else
             {
+                Debug.Log(GetGameTile().ToString());
                 isGameMap = true;
                 SceneManager.LoadScene("CombatScene");
             }
         }
     }
 
-    public void GetGameTile()
+    public TileProperties GetGameTile()
     {
         campaignMapGenerator = FindObjectOfType<CampaignMapGenerator>();
         campaignPlayerMovement = FindObjectOfType<CampaignPlayerMovement>();
         if(campaignMapGenerator != null && campaignPlayerMovement != null)
         {
-            campaignMapGenerator.GetTileProperties((int)campaignPlayerMovement.transform.position.x, (int)campaignPlayerMovement.transform.position.y);
+            return campaignMapGenerator.GetTileProperties((int)campaignPlayerMovement.transform.position.x, (int)campaignPlayerMovement.transform.position.y);
         }
+
+        Debug.Log("CampaignMapGenerator or CampaignPlayerMovement is null");
+        return null;
     }
 }
