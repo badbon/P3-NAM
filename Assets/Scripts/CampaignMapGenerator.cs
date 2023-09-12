@@ -7,6 +7,7 @@ public class CampaignMapGenerator : MonoBehaviour
     public Tilemap tilemap;
     public Tile grassTile;
     public Tile dirtTile;
+    public TileProperties[,] tilesProperties;
 
     public Vector3Int mapSize = new Vector3Int(100, 100, 1);
     public float dirtFrequency = 0.15f;  // Controls the frequency of dirt tiles
@@ -38,11 +39,19 @@ public class CampaignMapGenerator : MonoBehaviour
 
         Random.InitState(seed);
 
+        InitializeTileProperties(); 
         FillWithGrass();
-        PlaceTerrainTiles();  // Replaced PlaceWaterTiles with PlaceTerrainTiles
-
+        PlaceTerrainTiles();
         GenerateRandomUnits();
+
+        // Just a debug run for a single tile
+        TileProperties tileInfo = GetTileProperties(15, 15);
+        if (tileInfo != null)
+        {
+            Debug.Log($"Tile ({15},{15}) Properties:\nDensity: {tileInfo.density}\nEnemy Population: {tileInfo.enemyPop}\nMines: {tileInfo.mines}");
+        }
     }
+
 
     public void GenerateRandomUnits()
     {
@@ -110,6 +119,39 @@ public class CampaignMapGenerator : MonoBehaviour
         }
     }
 
+
+    private void InitializeTileProperties()
+    {
+        tilesProperties = new TileProperties[mapSize.x, mapSize.y];
+
+        for (int x = 0; x < mapSize.x; x++)
+        {
+            for (int y = 0; y < mapSize.y; y++)
+            {
+                int density = Random.Range(0, 101);  // Generates a number between 0 and 100 inclusive.
+                int enemyPop = Random.Range(0, 101);
+                int mines = Random.Range(0, 101);
+
+                tilesProperties[x, y] = new TileProperties(density, enemyPop, mines);
+            }
+        }
+    }
+
+    public TileProperties GetTileProperties(int x, int y)
+    {
+        // Check if the coordinates are within the map's bounds
+        if (x >= 0 && x < mapSize.x && y >= 0 && y < mapSize.y)
+        {
+            return tilesProperties[x, y];
+        }
+        else
+        {
+            Debug.LogError("Coordinates are out of bounds!");
+            return null;
+        }
+    }
+
+
 }
 
 [System.Serializable]
@@ -132,3 +174,19 @@ public class Unit
         this.entrenched = entrenched;
     }
 }
+
+[System.Serializable]
+public class TileProperties
+{
+    public int density;
+    public int enemyPop;
+    public int mines;
+
+    public TileProperties(int density, int enemyPop, int mines)
+    {
+        this.density = density;
+        this.enemyPop = enemyPop;
+        this.mines = mines;
+    }
+}
+
