@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
+
 
 public class CampaignPlayerMovement : MonoBehaviour
 {
@@ -14,17 +16,25 @@ public class CampaignPlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        // Check if clicked over a UI element
+        if (EventSystem.current.IsPointerOverGameObject())
         {
-            targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            isMoving = true;
+            Debug.Log("Clicked on UI");
+        }
+        else
+        {
+            //Debug.Log("Clicked on world");
+            if (Input.GetMouseButtonDown(0))
+            {
+                targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                isMoving = true;
+            }
         }
 
         if (isMoving)
         {
             MovePlayer();
         }
-
 
         // Camera zooming.
         float scrollData = Input.GetAxis("Mouse ScrollWheel");
