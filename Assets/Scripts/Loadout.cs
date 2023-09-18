@@ -10,6 +10,10 @@ public class Loadout : MonoBehaviour
     public int currentMagazineBullets; // Number of bullets in the magazine
     private float lastFiredTime = 0; // Time at which the weapon was last fired.
     public GameObject bulletPrefab; // Prefab of the generic bullet that is fired from the weapon
+    public float engagementRange = 10.0f;  // The range at which the NPC starts firing
+    public float skill = 0.5f;  // Skill of NPC. 0 is worst, 1 is best. This will influence accuracy.
+
+    public Transform fireTarget; // The target to fire at (player or hostiles, etc)
 
     void Start()
     {
@@ -61,7 +65,34 @@ public class Loadout : MonoBehaviour
                 StartCoroutine(Reload());
             }
     }
-    
+
+    private void DetectPlayer()
+    {
+        float distanceToPlayer = Vector2.Distance(transform.position, fireTarget.position);
+
+        if (distanceToPlayer <= engagementRange)
+        {
+            // Aim and fire at player
+            float aimAngle = Mathf.Atan2(fireTarget.position.y - transform.position.y, fireTarget.position.x - transform.position.x) * Mathf.Rad2Deg;
+            FireWithAccuracy(aimAngle, distanceToPlayer);
+        }
+    }
+
+
+    public void FireWithAccuracy(float angleInDegrees, float distanceToPlayer)
+    {
+        // Calculate inaccuracy based on distance and skill
+        // Longer distances and lower skills increase the inaccuracy
+        float inaccuracy = (1.0f - skill) * distanceToPlayer / engagementRange * equipedWeapon.accuracyModifier;
+
+        // Randomize angle within the inaccuracy range
+        float randomizedAngle = angleInDegrees + Random.Range(-inaccuracy, inaccuracy);
+
+        // Fire with the randomized angle
+        Fire(randomizedAngle);
+    }
+
+
     public IEnumerator Reload()
     {
         // Reloads the weapon

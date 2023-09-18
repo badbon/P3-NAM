@@ -67,9 +67,15 @@ public class NPCController : MonoBehaviour
 
     private void AttackPlayer()
     {
-        // Put your code for attacking the player here
+        // Calculate angle towards player
+        float aimAngle = Mathf.Atan2(player.position.y - transform.position.y, player.position.x - transform.position.x) * Mathf.Rad2Deg;
+
+        // Fire at player with that angle
+        loadout.FireWithAccuracy(aimAngle, Vector2.Distance(transform.position, player.position));
+
         Debug.Log("Attacking Player");
     }
+
 
     internal void TakeDamage(float damage)
     {
