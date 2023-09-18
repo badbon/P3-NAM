@@ -10,6 +10,7 @@ public class NPCController : MonoBehaviour
     public float speed = 10.0f;
     public float detectionRange = 5.0f;
     public float reachedTargetThreshold = 0.5f; // Distance to consider that NPC reached its target
+    public bool isHostile = true;
 
     private Transform player;
 
@@ -58,7 +59,7 @@ public class NPCController : MonoBehaviour
     {
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
-        if (distanceToPlayer <= detectionRange)
+        if (isHostile && distanceToPlayer <= detectionRange)
         {
             AttackPlayer();
         }

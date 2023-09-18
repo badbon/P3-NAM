@@ -792,8 +792,8 @@ MonoBehaviour:
   mapGenerator: {fileID: 1059587494}
   health: 100
   speed: 5
-  detectionRange: 5
-  reachedTargetThreshold: 0.5
+  detectionRange: 4
+  reachedTargetThreshold: 0.8
   loadout: {fileID: 1477691784}
 --- !u!1 &1657561037
 GameObject:
