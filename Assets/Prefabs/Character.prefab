@@ -280,7 +280,7 @@ Transform:
   m_GameObject: {fileID: 3067858420376599168}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.358, y: -0.304, z: 0}
+  m_LocalPosition: {x: 0.383, y: -0.581, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -428,7 +428,7 @@ MonoBehaviour:
   engagementRange: 10
   skill: 0.5
   fireTarget: {fileID: 0}
-  muzzleFlashPosition: {fileID: 2547928175204612933}
+  muzzleFlashPosition: {fileID: 869774657054956892}
   muzzleFlashPrefab: {fileID: 3934268641430198553, guid: 2ba9aa046d848b74e92ae85bca94d61b, type: 3}
   shellCasingPrefab: {fileID: 1550813221564817254, guid: 70863e33e75767b498d74c9f91762cd4, type: 3}
   firingSound: {fileID: 0}

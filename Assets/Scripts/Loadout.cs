@@ -69,9 +69,10 @@ public class Loadout : MonoBehaviour
                 // Spawn muzzle flash
                 GameObject muzzleFlash = Instantiate(muzzleFlashPrefab, muzzleFlashPosition.position, muzzleFlashPosition.rotation);
                 muzzleFlash.transform.parent = muzzleFlashPosition; // Make the muzzle flash a child of the muzzle flash position
+                DelayDestroyObj(muzzleFlash, 0.1f);
                 // Spawn shell casing
                 GameObject shellCasing = Instantiate(shellCasingPrefab, muzzleFlashPosition.position, muzzleFlashPosition.rotation);
-                shellCasing.transform.parent = muzzleFlashPosition; // Make the shell casing a child of the muzzle flash position
+                //shellCasing.transform.parent = muzzleFlashPosition; // Make the shell casing a child of the muzzle flash position
 
                 // Play firing sound
                 if(firingSound != null)
@@ -97,6 +98,11 @@ public class Loadout : MonoBehaviour
             float aimAngle = Mathf.Atan2(fireTarget.position.y - transform.position.y, fireTarget.position.x - transform.position.x) * Mathf.Rad2Deg;
             FireWithAccuracy(aimAngle, distanceToPlayer);
         }
+    }
+
+    public void DelayDestroyObj(GameObject obj, float delay)
+    {
+        Destroy(obj, delay);
     }
 
 
