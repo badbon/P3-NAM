@@ -52,6 +52,9 @@ TagManager:
   - name: Weapon
     uniqueID: 2675990987
     locked: 0
+  - name: FX
+    uniqueID: 2187026425
+    locked: 0
   - name: Trees
     uniqueID: 4006947539
     locked: 0

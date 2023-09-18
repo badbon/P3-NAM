@@ -12,14 +12,14 @@ public class JungleGenerator : MonoBehaviour
     public int enemyPresencePercentage = 15; // 100 - a lot of enemies, 0 - no enemies
 
     public Vector3Int mapSize = new Vector3Int(100, 100, 1);
-    public float treeSpawnChance = 0.02f;  // Chance for a tree to spawn on a grass tile
-    public float waterFrequency = 0.1f;    // Controls the frequency of water tiles
-    public float dirtFrequency = 0.15f;  // Controls the frequency of dirt tiles
+    public float treeSpawnChance = 0.02f; // Chance for a tree to spawn on a grass tile
+    public float waterFrequency = 0.1f; // Controls the frequency of water tiles
+    public float dirtFrequency = 0.15f;
 
     public int seed = 0;
     public bool useRandomSeed = true;
     public List<GameObject> enemyPrefabs;
-    private float baseEnemyChance = 0.0001f;
+    private float baseEnemyChance = 0.00001f;
 
     private void Start()
     {

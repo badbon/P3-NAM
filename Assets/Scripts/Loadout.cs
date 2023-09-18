@@ -14,6 +14,11 @@ public class Loadout : MonoBehaviour
     public float skill = 0.5f;  // Skill of NPC. 0 is worst, 1 is best. This will influence accuracy.
 
     public Transform fireTarget; // The target to fire at (player or hostiles, etc)
+    public Transform muzzleFlashPosition; // The position where the muzzle flash will be spawned
+    public GameObject muzzleFlashPrefab; // Prefab of the muzzle flash
+    public GameObject shellCasingPrefab; // Prefab of the shell casing
+    public AudioSource firingSound; // Sound to play when firing
+
 
     void Start()
     {
@@ -21,6 +26,8 @@ public class Loadout : MonoBehaviour
         equipedWeapon = new Weapon("M16", true, 10.0f, 10.0f, 0, 700f, 30, 1.0f, 1.0f);
         weapons = new List<Weapon>();
         weapons.Add(equipedWeapon);
+
+        firingSound = GetComponent<AudioSource>();
     }
 
     public void Fire(float angleInDegrees)
@@ -57,6 +64,20 @@ public class Loadout : MonoBehaviour
                 bulletScript.damage = equipedWeapon.damage;
                 bulletScript.range = equipedWeapon.range;
                 bulletScript.accuracyModifier = equipedWeapon.accuracyModifier;
+
+                // Post Fire
+                // Spawn muzzle flash
+                GameObject muzzleFlash = Instantiate(muzzleFlashPrefab, muzzleFlashPosition.position, muzzleFlashPosition.rotation);
+                muzzleFlash.transform.parent = muzzleFlashPosition; // Make the muzzle flash a child of the muzzle flash position
+                // Spawn shell casing
+                GameObject shellCasing = Instantiate(shellCasingPrefab, muzzleFlashPosition.position, muzzleFlashPosition.rotation);
+                shellCasing.transform.parent = muzzleFlashPosition; // Make the shell casing a child of the muzzle flash position
+
+                // Play firing sound
+                if(firingSound != null)
+                    firingSound.Play();
+
+
             }
             else
             {

@@ -29,7 +29,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 869774657054956892}
   m_Father: {fileID: 3454095988533027871}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8360425933166699498
@@ -254,6 +255,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &3067858420376599168
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 869774657054956892}
+  m_Layer: 0
+  m_Name: Muzzle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &869774657054956892
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3067858420376599168}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.358, y: -0.304, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2547928175204612933}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3101548116391841251
 GameObject:
   m_ObjectHideFlags: 0
@@ -393,6 +425,13 @@ MonoBehaviour:
   weapons: []
   currentMagazineBullets: 30
   bulletPrefab: {fileID: 1319630206304686669, guid: dd1277ddbed38bc43ada103846986cd2, type: 3}
+  engagementRange: 10
+  skill: 0.5
+  fireTarget: {fileID: 0}
+  muzzleFlashPosition: {fileID: 2547928175204612933}
+  muzzleFlashPrefab: {fileID: 3934268641430198553, guid: 2ba9aa046d848b74e92ae85bca94d61b, type: 3}
+  shellCasingPrefab: {fileID: 1550813221564817254, guid: 70863e33e75767b498d74c9f91762cd4, type: 3}
+  firingSound: {fileID: 0}
 --- !u!1 &5499359418391523967
 GameObject:
   m_ObjectHideFlags: 0
