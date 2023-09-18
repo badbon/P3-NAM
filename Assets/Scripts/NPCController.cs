@@ -18,6 +18,7 @@ public class NPCController : MonoBehaviour
 
     void Start()
     {
+        mapGenerator = FindObjectOfType<JungleGenerator>();
         player = GameObject.FindGameObjectWithTag("Player").transform; // Assuming your player object has the tag "Player"
         ChooseNewTarget();
     }
