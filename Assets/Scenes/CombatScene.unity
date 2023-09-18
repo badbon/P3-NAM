@@ -168,6 +168,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGameMap: 1
+  campaignMapGenerator: {fileID: 0}
+  campaignPlayerMovement: {fileID: 0}
 --- !u!1 &415445205
 GameObject:
   m_ObjectHideFlags: 0
@@ -787,8 +789,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddc30a6aab8b9c843ad8c9b17308792e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mapGenerator: {fileID: 1059587494}
   health: 100
-  speed: 10
+  speed: 5
+  detectionRange: 5
+  reachedTargetThreshold: 0.5
   loadout: {fileID: 1477691784}
 --- !u!1 &1657561037
 GameObject:
