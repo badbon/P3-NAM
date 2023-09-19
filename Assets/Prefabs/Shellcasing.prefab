@@ -125,9 +125,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a510512b42d1c545bc1c6a26999e369, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 25
-  backwardsPower: 1.25
+  rotationSpeed: 60
+  backwardsPower: 2.1
   backwardsPowerRand: 0
-  lifeTime: 0.22
-  upForce: 0.065
+  lifeTime: 0.35
+  upForce: 0.07
   rb: {fileID: 8762444915938971044}
