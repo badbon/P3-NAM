@@ -333,6 +333,7 @@ MonoBehaviour:
   detectionRange: 5
   reachedTargetThreshold: 0.8
   isHostile: 1
+  gunSpriteRenderer: {fileID: 4817502523134596210}
   loadout: {fileID: 5281809233555158439}
 --- !u!82 &3317294071824772391
 AudioSource:

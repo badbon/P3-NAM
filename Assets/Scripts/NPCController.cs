@@ -6,11 +6,12 @@ public class NPCController : MonoBehaviour
     private Vector2 currentTarget;
 
     public float health = 100f;
-    private float maxHealth = 100f;
     public float speed = 10.0f;
     public float detectionRange = 5.0f;
     public float reachedTargetThreshold = 0.5f; // Distance to consider that NPC reached its target
     public bool isHostile = true;
+
+    public SpriteRenderer gunSpriteRenderer;
 
     private Transform player;
 
@@ -60,11 +61,30 @@ public class NPCController : MonoBehaviour
     {
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
-        if (isHostile && distanceToPlayer <= detectionRange)
+        if (distanceToPlayer <= detectionRange)
         {
-            AttackPlayer();
+            if (isHostile)
+            {
+                AttackPlayer();
+            }
+
+            // Orientation towards the player
+            Vector2 directionToPlayer = (player.position - transform.position).normalized;
+            float angle = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x) * Mathf.Rad2Deg;
+            gunSpriteRenderer.transform.rotation = Quaternion.Euler(0, 0, angle);
+
+            // Flip sprite if the player is on the left side of the NPC
+            if (angle > 90 || angle < -90)
+            {
+                gunSpriteRenderer.flipY = true;
+            }
+            else
+            {
+                gunSpriteRenderer.flipY = false;
+            }
         }
     }
+
 
     private void AttackPlayer()
     {
