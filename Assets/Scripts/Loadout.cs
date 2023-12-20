@@ -66,9 +66,19 @@ public class Loadout : MonoBehaviour
                 bulletScript.accuracyModifier = equipedWeapon.accuracyModifier;
 
                 // Post Fire
+
                 // Spawn muzzle flash
                 GameObject muzzleFlash = Instantiate(muzzleFlashPrefab, muzzleFlashPosition.position, muzzleFlashPosition.rotation);
                 muzzleFlash.transform.parent = muzzleFlashPosition; // Make the muzzle flash a child of the muzzle flash position
+                // Make sure muzzle flash is flipped a long with actual gun if it is behind player likewise
+                if (angleInDegrees > 90 || angleInDegrees < -90)
+                {
+                    muzzleFlash.GetComponent<SpriteRenderer>().flipY = true;
+                }
+                else
+                {
+                    muzzleFlash.GetComponent<SpriteRenderer>().flipY = false;
+                }
                 DelayDestroyObj(muzzleFlash, 0.1f);
                 // Spawn shell casing
                 GameObject shellCasing = Instantiate(shellCasingPrefab, muzzleFlashPosition.position, muzzleFlashPosition.rotation);
