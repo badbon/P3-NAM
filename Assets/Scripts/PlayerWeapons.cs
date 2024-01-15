@@ -34,9 +34,8 @@ public class PlayerWeapons : MonoBehaviour
         Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(new Vector3(mouseScreenPosition.x, mouseScreenPosition.y, Camera.main.transform.position.z - transform.position.z));
 
         Vector3 directionToMouse = mouseWorldPosition - transform.position;
-        float angle = Mathf.Atan2(directionToMouse.y, directionToMouse.x) * Mathf.Rad2Deg;
-
-        return angle;
+        
+        return Mathf.Atan2(directionToMouse.y, directionToMouse.x) * Mathf.Rad2Deg;
     }
 
 

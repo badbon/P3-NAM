@@ -14,8 +14,7 @@ public class Loadout : MonoBehaviour
     public float skill = 0.5f;  // Skill of NPC. 0 is worst, 1 is best. This will influence accuracy.
 
     public Transform fireTarget; // The target to fire at (player or hostiles, etc)
-    public Transform muzzleFlashPosition; // The position where the muzzle flash will be spawned
-    public GameObject muzzleFlashPrefab; // Prefab of the muzzle flash
+    public GameObject muzzleFlashObj;
     public GameObject shellCasingPrefab; // Prefab of the shell casing
     public AudioSource firingSound; // Sound to play when firing
 
@@ -65,35 +64,23 @@ public class Loadout : MonoBehaviour
                 bulletScript.range = equipedWeapon.range;
                 bulletScript.accuracyModifier = equipedWeapon.accuracyModifier;
 
-                // Post Fire
+                // Enable muzzle flash
+                //muzzleFlashObj = 
 
-                // Spawn muzzle flash
-                GameObject muzzleFlash = Instantiate(muzzleFlashPrefab, muzzleFlashPosition.position, muzzleFlashPosition.rotation);
-                muzzleFlash.transform.parent = muzzleFlashPosition; // Make the muzzle flash a child of the muzzle flash position
-                // Make sure muzzle flash is flipped a long with actual gun if it is behind player likewise
-                if (angleInDegrees > 90 || angleInDegrees < -90)
-                {
-                    muzzleFlash.GetComponent<SpriteRenderer>().flipY = true;
-                }
-                else
-                {
-                    muzzleFlash.GetComponent<SpriteRenderer>().flipY = false;
-                }
-                DelayDestroyObj(muzzleFlash, 0.1f);
+                //StartCoroutine(DelayGameobjectDisable(0.1f, muzzleFlashPosition))
+
                 // Spawn shell casing
-                GameObject shellCasing = Instantiate(shellCasingPrefab, muzzleFlashPosition.position, muzzleFlashPosition.rotation);
+                //GameObject shellCasing = Instantiate(shellCasingPrefab, muzzleFlashPosition.position, muzzleFlashPosition.rotation);
                 //shellCasing.transform.parent = muzzleFlashPosition; // Make the shell casing a child of the muzzle flash position
 
                 // Play firing sound
                 if(firingSound != null)
                     firingSound.Play();
-
-
             }
             else
             {
                 // No ammo. Reload
-                Debug.Log("No ammo!");
+                Debug.Log("No ammo! Reloading.");
                 StartCoroutine(Reload());
             }
     }
@@ -113,6 +100,12 @@ public class Loadout : MonoBehaviour
     public void DelayDestroyObj(GameObject obj, float delay)
     {
         Destroy(obj, delay);
+    }
+
+    public IEnumerator DelayGameobjectDisable(float time, GameObject obj)
+    {
+        yield return new WaitForSeconds(time);
+
     }
 
 
