@@ -1095,7 +1095,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a311cbdec2537948ac515865d9adb10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 0}
+  textObj: {fileID: 0}
+  typingDialogueDelay: 0.02
 --- !u!1 &2004068359
 GameObject:
   m_ObjectHideFlags: 0

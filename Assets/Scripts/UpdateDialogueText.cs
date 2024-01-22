@@ -19,7 +19,7 @@ public class UpdateDialogueText : MonoBehaviour
             Debug.Log("Missing text var for dialogue!");
         }
 
-        StartCoroutine(DelayUpdateTypingText("Tari tari"));
+        StartCoroutine(DelayUpdateTypingText("Perhaps.. real hell is heaven we found on the way."));
     }
 
     void Update()
@@ -53,13 +53,11 @@ public class UpdateDialogueText : MonoBehaviour
         for (int i = 0; i < letters.Count(); i++)
         {
             nextLetter = letters[i];
-            Debug.Log(nextLetter);
 
             textObj.text += nextLetter;
 
             yield return new WaitForSeconds(typingDialogueDelay);
         }
-
 
         yield return null; 
     }
