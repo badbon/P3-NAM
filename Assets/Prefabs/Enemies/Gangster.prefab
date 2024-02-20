@@ -216,7 +216,7 @@ GameObject:
   - component: {fileID: 2127275840807126062}
   - component: {fileID: 3317294071824772391}
   m_Layer: 0
-  m_Name: NPC
+  m_Name: Gangster
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
