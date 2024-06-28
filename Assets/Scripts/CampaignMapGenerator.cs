@@ -28,8 +28,6 @@ public class CampaignMapGenerator : MonoBehaviour
     public int turn = 0; // Turn counter
     public bool playerTurn = true; // If true, player turn. If false, enemy turn.
 
-
-
     private void Start()
     {
         if (useRandomSeed)

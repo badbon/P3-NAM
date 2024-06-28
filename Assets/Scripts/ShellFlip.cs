@@ -10,7 +10,6 @@ public class ShellFlip : MonoBehaviour
     private float backwardsPowerRand;
     public float lifeTime = 1f;
     public float upForce = 1f;
-
     public Rigidbody2D rb;
 
     void Start()
@@ -25,7 +24,6 @@ public class ShellFlip : MonoBehaviour
     {
         // Torque backwards
         rb.AddTorque(rotationSpeed, ForceMode2D.Force);
-        // Randomize backwards power 50% to 200%
         backwardsPowerRand = Random.Range(backwardsPower * 0.5f, backwardsPower * 2f);
         // Throw backwards
         rb.AddForce(-transform.right * backwardsPowerRand, ForceMode2D.Force);

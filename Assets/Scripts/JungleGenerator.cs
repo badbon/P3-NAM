@@ -29,15 +29,13 @@ public class JungleGenerator : MonoBehaviour
         }
 
         Random.InitState(seed);
-
         FillWithGrass();
-        PlaceTerrainTiles();  // Replaced PlaceWaterTiles with PlaceTerrainTiles
+        PlaceTerrainTiles();
         PlaceTrees();
         EnemyPresence();
 
         // To make sure trees don't generate root-first if theyre too close on top of each other
         SortChildrenByY(transform);
-
     }
 
     private void FillWithGrass()
@@ -59,9 +57,7 @@ public class JungleGenerator : MonoBehaviour
             for (int y = 0; y < mapSize.y; y++)
             {
                 Vector3Int cellPosition = new Vector3Int(x, y, 0);
-                // Adjusted seed for better layouts
                 float noiseValue = Mathf.PerlinNoise(x * 0.05f + (seed * 0.0001f), y * 0.05f + (seed * 0.0001f));
-
 
                 if (noiseValue < waterFrequency)
                 {
@@ -71,7 +67,6 @@ public class JungleGenerator : MonoBehaviour
                 {
                     tilemap.SetTile(cellPosition, dirtTile);
                 }
-
             }
         }
     }
@@ -82,10 +77,8 @@ public class JungleGenerator : MonoBehaviour
         {
             for (int y = 0; y < mapSize.y; y++)
             {
-                // Enemies have a base chance to spawn, then affected by enemyPresencePercentage
                 if (Random.value < baseEnemyChance * enemyPresencePercentage)
                 {
-                    // Select a random enemy prefab from the list
                     GameObject randomEnemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Count)];
                     Instantiate(randomEnemyPrefab, new Vector3(x + 0.5f, y + 0.5f, 0), Quaternion.identity, this.transform);
                 }
@@ -102,7 +95,6 @@ public class JungleGenerator : MonoBehaviour
                 Vector3Int cellPosition = new Vector3Int(x, y, 0);
                 if (tilemap.GetTile(cellPosition) == grassTile && Random.value < treeSpawnChance)
                 {
-                    // Select a random tree prefab from the list
                     GameObject randomTreePrefab = treePrefabs[Random.Range(0, treePrefabs.Count)];
                     Instantiate(randomTreePrefab, new Vector3(x + 0.5f, y + 0.5f, 0), Quaternion.identity, this.transform);
                 }
@@ -113,17 +105,12 @@ public class JungleGenerator : MonoBehaviour
     public void SortChildrenByY(Transform parentTransform)
     {
         List<Transform> children = new List<Transform>();
-
-        // Populate the list with each child
         foreach (Transform child in parentTransform)
         {
             children.Add(child);
         }
 
-        // Sort the list based on Y-coordinate
         children.Sort((a, b) => b.position.y.CompareTo(a.position.y));
-
-        // Re-attach the children in the new order
         foreach (Transform child in children)
         {
             child.SetAsLastSibling();

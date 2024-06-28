@@ -4,19 +4,17 @@ using UnityEngine;
 
 public class CampaignAIController : MonoBehaviour
 {
-    public float speed = 5f;              // Movement speed
+    public float speed = 5f;
     public float waypointTolerance = 0.5f; // Distance from waypoint to be considered as reached
-
     private Vector3 currentWaypoint;
 
     public CampaignMapGenerator mapGenerator;
     Vector2 mapBounds;
 
-
     void Start()
     {
         mapGenerator = FindObjectOfType<CampaignMapGenerator>();
-        SetNewWaypoint();  // Choose the initial waypoint
+        SetNewWaypoint();
     }
 
     void Update()
@@ -41,10 +39,9 @@ public class CampaignAIController : MonoBehaviour
 
         if (Vector3.Distance(transform.position, currentWaypoint) <= waypointTolerance)
         {
-            StartCoroutine(SetNewWaypointAfterDelay(0.5f));  // Wait for 0.5 seconds before setting a new waypoint
+            StartCoroutine(SetNewWaypointAfterDelay(0.5f));
         }
     }
-
 
     void SetNewWaypoint()
     {

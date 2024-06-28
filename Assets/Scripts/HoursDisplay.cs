@@ -15,12 +15,6 @@ public class HoursDisplay : MonoBehaviour
     {
         hours = (int)hoursSlider.value;
         hoursText.text = hours.ToString() + " hour(s)";
-
-    }
-
-    void Start()
-    {
-        
     }
 
     void Update()

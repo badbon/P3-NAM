@@ -12,15 +12,13 @@ public class NPCController : MonoBehaviour
     public bool isHostile = true;
 
     public SpriteRenderer gunSpriteRenderer;
-
     private Transform player;
-
     public Loadout loadout;
 
     void Start()
     {
         mapGenerator = FindObjectOfType<JungleGenerator>();
-        player = GameObject.FindGameObjectWithTag("Player").transform; // Assuming your player object has the tag "Player"
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         ChooseNewTarget();
     }
 
@@ -43,7 +41,6 @@ public class NPCController : MonoBehaviour
     private void ChooseNewTarget()
     {
         Vector3Int randomCell;
-
         do
         {
             randomCell = new Vector3Int(
@@ -85,7 +82,6 @@ public class NPCController : MonoBehaviour
         }
     }
 
-
     private void AttackPlayer()
     {
         // Calculate angle towards player
@@ -96,7 +92,6 @@ public class NPCController : MonoBehaviour
 
         Debug.Log("Attacking Player");
     }
-
 
     internal void TakeDamage(float damage)
     {

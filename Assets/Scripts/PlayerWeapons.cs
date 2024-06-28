@@ -37,6 +37,4 @@ public class PlayerWeapons : MonoBehaviour
         
         return Mathf.Atan2(directionToMouse.y, directionToMouse.x) * Mathf.Rad2Deg;
     }
-
-
 }

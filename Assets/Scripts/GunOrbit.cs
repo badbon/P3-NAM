@@ -20,13 +20,12 @@ public class GunOrbit : MonoBehaviour
 
         // Convert screen position to world position
         Vector3 worldPosition = Camera.main.ScreenToWorldPoint(gunPosition);
-        worldPosition.z = 0;  // Ensure z-position remains consistent
+        worldPosition.z = 0;
 
         transform.position = worldPosition;
         float angle = Mathf.Atan2(directionToMouse.y, directionToMouse.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, angle);
 
-        // Flip sprite if aiming behind player
         if (angle > 90 || angle < -90)
         {
             spriteRenderer.flipY = true;

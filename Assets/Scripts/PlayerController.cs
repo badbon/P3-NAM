@@ -13,11 +13,6 @@ public class PlayerController : MonoBehaviour
     public Vector3 spawnPoint; // For respawns, etc
     public SpriteRenderer[] spriteRenderers; // All visible player parts
 
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
         CheckInput();
@@ -68,7 +63,6 @@ public class PlayerController : MonoBehaviour
         }
 
         yield return new WaitForSeconds(0.5f);
-
         foreach (SpriteRenderer sr in spriteRenderers)
         {
             sr.enabled = true;

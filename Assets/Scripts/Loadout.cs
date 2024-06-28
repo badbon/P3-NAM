@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Loadout : MonoBehaviour
 {
-    // controls the actual weapons, equipment, and armament that the player (or, NPC) has
+    // Controls the actual weapons, equipment, and armament that the player (or, NPC) has
     public Weapon equipedWeapon;
     public List<Weapon> weapons; // List of weapons that the player has
     public int currentMagazineBullets; // Number of bullets in the magazine
@@ -12,12 +12,10 @@ public class Loadout : MonoBehaviour
     public GameObject bulletPrefab; // Prefab of the generic bullet that is fired from the weapon
     public float engagementRange = 10.0f;  // The range at which the NPC starts firing
     public float skill = 0.5f;  // Skill of NPC. 0 is worst, 1 is best. This will influence accuracy.
-
     public Transform fireTarget; // The target to fire at (player or hostiles, etc)
     public GameObject muzzleFlashObj;
     public GameObject shellCasingPrefab; // Prefab of the shell casing
     public AudioSource firingSound; // Sound to play when firing
-
 
     void Start()
     {
@@ -41,48 +39,37 @@ public class Loadout : MonoBehaviour
         lastFiredTime = currentTime; // Update the last fired time to now
         
         if (currentMagazineBullets > 0)
-            {
-                // Has ammo
-                currentMagazineBullets -= 1;
+        {
+            // Has ammo
+            currentMagazineBullets -= 1;
 
-                // Calculate the rotation based on the provided angle
-                Quaternion bulletRotation = Quaternion.Euler(0, 0, angleInDegrees);
+            // Calculate the rotation based on the provided angle
+            Quaternion bulletRotation = Quaternion.Euler(0, 0, angleInDegrees);
+            // Calculate the bullet's direction
+            Vector3 bulletDirection = bulletRotation * Vector3.right;
+            // Calculate the offset for the bullet's initial position
+            float playerRadius = GetComponent<Collider2D>().bounds.extents.magnitude;
+            float bulletOffset = playerRadius + 0.25f; // Added a 0.1f padding to ensure it's outside the player
+            Vector3 bulletSpawnPosition = transform.position + bulletDirection * bulletOffset;
 
-                // Calculate the bullet's direction
-                Vector3 bulletDirection = bulletRotation * Vector3.right; // Assumes firing to the right is the default.
-
-                // Calculate the offset for the bullet's initial position
-                float playerRadius = GetComponent<Collider2D>().bounds.extents.magnitude; // Assumes a Collider2D on the player
-                float bulletOffset = playerRadius + 0.25f; // Added a 0.1f padding to ensure it's outside the player
-                Vector3 bulletSpawnPosition = transform.position + bulletDirection * bulletOffset;
-
-                //Spawn bullet with the adjusted rotation and position
-                GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPosition, bulletRotation);
+            //Spawn bullet with the adjusted rotation and position
+            GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPosition, bulletRotation);
                 
-                Bullet bulletScript = bullet.GetComponent<Bullet>();
-                bulletScript.damage = equipedWeapon.damage;
-                bulletScript.range = equipedWeapon.range;
-                bulletScript.accuracyModifier = equipedWeapon.accuracyModifier;
+            Bullet bulletScript = bullet.GetComponent<Bullet>();
+            bulletScript.damage = equipedWeapon.damage;
+            bulletScript.range = equipedWeapon.range;
+            bulletScript.accuracyModifier = equipedWeapon.accuracyModifier;
 
-                // Enable muzzle flash
-                //muzzleFlashObj = 
-
-                //StartCoroutine(DelayGameobjectDisable(0.1f, muzzleFlashPosition))
-
-                // Spawn shell casing
-                //GameObject shellCasing = Instantiate(shellCasingPrefab, muzzleFlashPosition.position, muzzleFlashPosition.rotation);
-                //shellCasing.transform.parent = muzzleFlashPosition; // Make the shell casing a child of the muzzle flash position
-
-                // Play firing sound
-                if(firingSound != null)
-                    firingSound.Play();
-            }
-            else
-            {
-                // No ammo. Reload
-                Debug.Log("No ammo! Reloading.");
-                StartCoroutine(Reload());
-            }
+            // Play firing sound
+            if(firingSound != null)
+                firingSound.Play();
+        }
+        else
+        {
+            // No ammo. Reload
+            Debug.Log("No ammo! Reloading.");
+            StartCoroutine(Reload());
+        }
     }
 
     private void DetectPlayer()
@@ -108,7 +95,6 @@ public class Loadout : MonoBehaviour
 
     }
 
-
     public void FireWithAccuracy(float angleInDegrees, float distanceToPlayer)
     {
         // Calculate inaccuracy based on distance and skill
@@ -117,11 +103,9 @@ public class Loadout : MonoBehaviour
 
         // Randomize angle within the inaccuracy range
         float randomizedAngle = angleInDegrees + Random.Range(-inaccuracy, inaccuracy);
-
         // Fire with the randomized angle
         Fire(randomizedAngle);
     }
-
 
     public IEnumerator Reload()
     {
@@ -136,7 +120,6 @@ public class Loadout : MonoBehaviour
 public class Weapon 
 {
     // Weapon class (firearm, knife, etc. stores all data about the weapon)
-    
     public string name;
     public bool isFirearm; // false for knives, true for grenades, guns, etc.
     public float damage;
@@ -146,7 +129,6 @@ public class Weapon
     public int magazineSize;
     public float reloadTime;
     public float weightModifier;
-
     public Weapon(string name, bool isFirearm, float damage, float range, int accuracyModifier, float fireRate, int magazineSize, float reloadTime, float weightModifier)
     {
         this.name = name;
@@ -159,5 +141,4 @@ public class Weapon
         this.reloadTime = reloadTime;
         this.weightModifier = weightModifier;
     }
-
 }

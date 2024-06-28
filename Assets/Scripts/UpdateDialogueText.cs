@@ -8,7 +8,6 @@ using System.Linq;
 public class UpdateDialogueText : MonoBehaviour
 {
     public TMP_Text textObj;
-
     public float typingDialogueDelay = 0.05f;
 
     void Start()
@@ -20,11 +19,6 @@ public class UpdateDialogueText : MonoBehaviour
         }
 
         StartCoroutine(DelayUpdateTypingText("Perhaps.. real hell is heaven we found on the way."));
-    }
-
-    void Update()
-    {
-        
     }
 
     // Print dialogue letter by letter, with delay
